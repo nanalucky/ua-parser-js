@@ -709,14 +709,8 @@
             ], [[VENDOR, LG], [TYPE, SMARTTV]], [
             /(apple) ?tv/i                                                      // Apple TV
             ], [VENDOR, [MODEL, APPLE+' TV'], [TYPE, SMARTTV]], [
-            /crkey.*devicetype\/chromecast/i                                    // Google Chromecast Third Generation
-            ], [[MODEL, CHROMECAST+' Third Generation'], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
-            /crkey.*devicetype\/([^/]*)/i                                       // Google Chromecast with specific device type
-            ], [[MODEL, /^/, 'Chromecast '], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
-            /fuchsia.*crkey/i                                                   // Google Chromecast Nest Hub
-            ], [[MODEL, CHROMECAST+' Nest Hub'], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
-            /crkey/i                                                            // Google Chromecast, Linux-based or unknown
-            ], [[MODEL, CHROMECAST], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
+            /crkey/i                                                            // Google Chromecast
+            ], [[MODEL, CHROME+'cast'], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
             /droid.+aft(\w+)( bui|\))/i                                         // Fire TV
             ], [MODEL, [VENDOR, AMAZON], [TYPE, SMARTTV]], [
             /\(dtv[\);].+(aquos)/i,
