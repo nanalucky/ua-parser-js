@@ -1800,6 +1800,7 @@
         }
     },
     {
+<<<<<<< HEAD
         "desc"    : "Slimjet",
         "ua"      : "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.75 Safari/537.36 Slimjet/20.0.2.0",
         "expect"  :
@@ -1807,6 +1808,25 @@
             "name"    : "Slimjet",
             "version" : "20.0.2.0",
             "major"   : "20"
+=======
+        "desc"    : "Sony WebMAF SDK (Playstation)",
+        "ua"      : "Mozilla/5.0 (PlayStation 4 WebMAF) AppleWebKit/601.2 (KHTML, like Gecko) WebMAF/v3.1.0-0-ge5873ba4 SDK: (0x09508001u), Built: Nov  1 2022 14:36:14",
+        "expect"  :
+        {
+            "name"    : "WebMAF",
+            "version" : "v3.1.0-0-ge5873ba4",
+            "major"   : "3"
+        }
+    },
+    {
+        "desc"    : "Sony WebMAF SDK (Playstation)",
+        "ua"      : "Mozilla/5.0 (PlayStation 5; WebMAF/1.0.0) AppleWebKit/537.73 (KHTML, like Gecko)",
+        "expect"  :
+        {
+            "name"    : "WebMAF",
+            "version" : "1.0.0",
+            "major"   : "1"
+>>>>>>> 5948060 (Implement PlayStation app `WebMAF` detection (#649))
         }
     },
     {

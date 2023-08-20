@@ -324,8 +324,8 @@
             /\b(?:mxbrowser|mxios|myie2)\/?([-\w\.]*)\b/i                       // Maxthon
             ], [VERSION, [NAME, 'Maxthon']], [
             /(kindle)\/([\w\.]+)/i,                                             // Kindle
-            /(lunascape|maxthon|netfront|jasmine|blazer|sleipnir)[\/ ]?([\w\.]*)/i,      
-                                                                                // Lunascape/Maxthon/Netfront/Jasmine/Blazer/Sleipnir
+            /(lunascape|maxthon|netfront|jasmine|blazer)[\/ ]?([\w\.]*)/i,      // Lunascape/Maxthon/Netfront/Jasmine/Blazer
+            /(webmaf)\/([a-z0-9\.-]+)/i,                                        // Sony/Playstation WebMAF
             // Trident based
             /(avant|iemobile|slim(?:browser|boat|jet))[\/ ]?([\d\.]*)/i,        // Avant/IEMobile/SlimBrowser/SlimBoat/Slimjet
             /(?:ms|\()(ie) ([\w\.]+)/i,                                         // Internet Explorer
