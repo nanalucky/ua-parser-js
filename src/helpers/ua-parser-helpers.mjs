@@ -3,7 +3,7 @@
 // Source: /src/helpers/ua-parser-helpers.js
 
 ///////////////////////////////////////////////
-/*  Helpers for UAParser.js v2.0.0-beta.3
+/*  Helpers for UAParser.js v2.0.0-rc.1
     https://github.com/faisalman/ua-parser-js
     Author: Faisal Salman <f@faisalman.com>
     AGPLv3 License */
@@ -11,18 +11,40 @@
 
 /*jshint esversion: 6 */
 
-import { CPU, OS, Engine } from '../enums/ua-parser-enums.mjs';
-import { UAParser } from '../main/ua-parser';
+import { CPU, OS, Engine } from './enums/ua-parser-enums.mjs';
+import { UAParser } from './main/ua-parser.mjs';
+import { isFromEU } from 'detect-europe-js';
 
-const getDeviceVendor = model => UAParser(`Mozilla/5.0 (Linux; Android 10; ${model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.0.0 Safari/537.36`).device.vendor;
+const getDeviceVendor = (model) => UAParser(`Mozilla/5.0 (Linux; Android 10; ${model}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.0.0 Safari/537.36`).device.vendor;
 
-const isAppleSilicon = res => res.os.is(OS.MACOS) && res.cpu.is(CPU.ARM);
+const isAppleSilicon = (res) => {
+    if (res.os.is(OS.MACOS)) {
+        if (res.cpu.is(CPU.ARM)) {
+            return true;
+        }
+        try {
+            const canvas = document.createElement('canvas');
+            const webgl = canvas.getContext('webgl2') || canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+            const debug = webgl.getExtension('WEBGL_debug_renderer_info');
+            const renderer = webgl.getParameter(debug.UNMASKED_RENDERER_WEBGL);
+            if (renderer.match(/apple m\d/i)) {
+                return true;
+            }
+        } catch {
+            return false;
+        }
+    }
+    return false;
+}
+
+const isChromeFamily = (res) => res.engine.is(Engine.BLINK);
+
+const isElectron = () => !!(process?.versions?.hasOwnProperty('electron') ||    // node.js
+                            / electron\//i.test(navigator?.userAgent));         // browser
 
 const isChromeFamily = res => res.engine.is(Engine.BLINK);
 
-const isFrozenUA = ua => /^Mozilla\/5\.0 \((Windows NT 10\.0; Win64; x64|Macintosh; Intel Mac OS X 10_15_7|X11; Linux x86_64|X11; CrOS x86_64 14541\.0\.0|Fuchsia|Linux; Android 10; K)\) AppleWebKit\/537\.36 \(KHTML, like Gecko\) Chrome\/\d+\.0\.0\.0 (Mobile )?Safari\/537\.36/.test(ua);
-
-const isStandalonePWA = () => window && (window.matchMedia('(display-mode: standalone)').matches ||
+const isStandalonePWA = () => window && (window.matchMedia('(display-mode: standalone)').matches || 
                                 // iOS
                                 navigator.standalone ||
                                 // Android
@@ -32,10 +54,12 @@ const isStandalonePWA = () => window && (window.matchMedia('(display-mode: stand
                                 /trident.+(msapphost|webview)\//i.test(navigator.userAgent) ||
                                 document.referrer.startsWith('app-info://platform/microsoft-store'));
 
-export {
+export { 
     getDeviceVendor,
     isAppleSilicon,
     isChromeFamily,
+    isElectron,
+    isFromEU,
     isFrozenUA,
-    isStandalonePWA,
+    isStandalonePWA
 }
