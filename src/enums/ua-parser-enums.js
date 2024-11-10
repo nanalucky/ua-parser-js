@@ -143,7 +143,7 @@ const BrowserType = Object.freeze({
     FETCHER: 'fetcher',
     INAPP: 'inapp',
     MEDIAPLAYER: 'mediaplayer',
-    MODULE: 'module'
+    LIBRARY: 'library'
 });
 
 const CPU = Object.freeze({
