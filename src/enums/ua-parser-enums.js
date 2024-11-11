@@ -258,6 +258,7 @@ const Engine = Object.freeze({
     NETFRONT: 'NetFront',
     NETSURF: 'NetSurf',
     PRESTO: 'Presto',
+    SERVO: 'Servo',
     TASMAN: 'Tasman',
     TRIDENT: 'Trident',
     W3M: 'w3m',
