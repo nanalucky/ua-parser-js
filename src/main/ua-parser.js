@@ -88,6 +88,7 @@
         LG          = 'LG',
         MICROSOFT   = 'Microsoft',
         MOTOROLA    = 'Motorola',
+        NVIDIA      = 'Nvidia',
         ONEPLUS     = 'OnePlus',
         OPPO        = 'OPPO',
         SAMSUNG     = 'Samsung',
@@ -735,8 +736,8 @@
             ], [MODEL, [VENDOR, MICROSOFT], [TYPE, TABLET]], [
             /droid [\d\.]+; (fp\du?)(?: b|\))/i                                 // Fairphone
             ], [MODEL, [VENDOR, 'Fairphone'], [TYPE, MOBILE]], [
-            /(shield[\w ]+) b/i                                                 // Nvidia Shield Tablets
-            ], [MODEL, [VENDOR, 'Nvidia'], [TYPE, TABLET]], [
+            /((?:tegranote|shield t(?!.+d tv))[\w- ]*?)(?: b|\))/i              // Nvidia Tablets
+            ], [MODEL, [VENDOR, NVIDIA], [TYPE, TABLET]], [
             /(sprint) (\w+)/i                                                   // Sprint Phones
             ], [VENDOR, MODEL, [TYPE, MOBILE]], [
             /(kin\.[onetw]{3})/i                                                // Microsoft Kin
@@ -762,6 +763,8 @@
             ], [[MODEL, CHROME+'cast'], [VENDOR, GOOGLE], [TYPE, SMARTTV]], [
             /droid.+aft(\w+)( bui|\))/i                                         // Fire TV
             ], [MODEL, [VENDOR, AMAZON], [TYPE, SMARTTV]], [
+            /(shield \w+ tv)/i                                                  // Nvidia Shield TV
+            ], [MODEL, [VENDOR, NVIDIA], [TYPE, SMARTTV]], [
             /\(dtv[\);].+(aquos)/i,
             /(aquos-tv[\w ]+)\)/i                                               // Sharp
             ], [MODEL, [VENDOR, SHARP], [TYPE, SMARTTV]],[
@@ -784,8 +787,8 @@
             /(ouya)/i,                                                          // Ouya
             /(nintendo) (\w+)/i                                                 // Nintendo
             ], [VENDOR, MODEL, [TYPE, CONSOLE]], [
-            /droid.+; (shield) bui/i                                            // Nvidia
-            ], [MODEL, [VENDOR, 'Nvidia'], [TYPE, CONSOLE]], [
+            /droid.+; (shield)( bui|\))/i                                       // Nvidia Portable
+            ], [MODEL, [VENDOR, NVIDIA], [TYPE, CONSOLE]], [
             /(playstation \w+)/i                                                // Playstation
             ], [MODEL, [VENDOR, SONY], [TYPE, CONSOLE]], [
             /\b(xbox(?: one)?(?!; xbox))[\); ]/i                                // Microsoft Xbox
